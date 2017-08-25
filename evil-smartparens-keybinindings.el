@@ -1,4 +1,4 @@
-;;; evil-smartparens.el --- Evil bindings to Smartparens
+;;; evil-smartparens-keybindings.el --- Evil bindings to Smartparens
 
 ;; Copyright (C) 2014 Joe Schafer
 
@@ -23,14 +23,14 @@
 
 ;; Common sense bindings to the smartparens library.
 ;;
-;; See documentation on https://github.com/jschaf/evil-smartparens
+;; See documentation on https://github.com/jschaf/evil-smartparens-keybindings
 
 (require 'smartparens)
 (require 'evil)
 
 ;;; Code:
 
-(define-minor-mode evil-smartparens-mode
+(define-minor-mode evil-smartparens-keybindings-mode
   "Minor mode for combining Evil and SmartParens."
   :keymap '()
   :lighter "E-SP")
@@ -39,7 +39,7 @@
   "Return an interned symbol NAME prefixed with 'evil-'."
    (intern (format "evil-%s" name)))
 
-(defmacro evil-sp-make-evil-smartparens-movement (name)
+(defmacro evil-sp-make-evil-smartparens-keybindings-movement (name)
   "Create Evil movement command from NAME function."
   `(let ((evil-name (evil-sp-evilize-name ,name))
          (doc (documentation ,name)))
@@ -111,7 +111,7 @@ If ARG is non-nil, go back ARG sexps."
     (loop for (key . func) in sexp-motions
           do
           ;; Define the motion command
-          (evil-sp-make-evil-smartparens-movement func)
+          (evil-sp-make-evil-smartparens-keybindings-movement func)
 
           ;; Create key-bindings
           (define-key evil-normal-state-map key func)
@@ -125,5 +125,5 @@ If ARG is non-nil, go back ARG sexps."
 
 (evil-sp-smartparens-config)
 
-(provide 'evil-smartparens)
-;;; evil-smartparens.el ends here
+(provide 'evil-smartparens-keybindings)
+;;; evil-smartparens-keybindings.el ends here
